@@ -1,845 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/disc-golf-basket.svg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/disc-golf-basket.svg">
     <title>Liga de Disc Golf – Campo Montemorelos · 4ta Temporada</title>
-    <style>
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --brand-primary: #c65f24;
-            --brand-dark: #0f3332;
-            --brand-light: #f5f1ec;
-            --brand-accent: #e8a87c;
-            --text-dark: #1e1e1e;
-            --text-light: #fefefe;
-            --shadow-sm: 0 2px 8px rgba(15, 51, 50, 0.08);
-            --shadow-md: 0 6px 20px rgba(15, 51, 50, 0.12);
-            --shadow-lg: 0 16px 40px rgba(15, 51, 50, 0.16);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --font-heading: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            --font-body: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--brand-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ===== TYPOGRAPHY ===== */
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--brand-dark);
-        }
-
-        h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            letter-spacing: -0.02em;
-        }
-
-        h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-            margin-bottom: 0.75rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--brand-primary);
-            margin-top: 8px;
-            border-radius: 2px;
-        }
-
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: var(--brand-primary);
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        a:hover {
-            opacity: 0.8;
-        }
-
-        /* ===== UTILITIES ===== */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
-        /* ===== HEADER ===== */
-        .site-header {
-            background: var(--brand-dark);
-            color: var(--text-light);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow-md);
-        }
-
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .header-logo img {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: 2px solid var(--brand-primary);
-            object-fit: cover;
-        }
-
-        .header-logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header-logo-text .league-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .header-logo-text .season-badge {
-            font-size: 0.75rem;
-            color: var(--brand-accent);
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .header-nav {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .header-nav a {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 8px 14px;
-            border-radius: 999px;
-            transition: background 0.2s, color 0.2s;
-            white-space: nowrap;
-        }
-
-        .header-nav a:hover {
-            background: var(--brand-primary);
-            color: var(--text-light);
-            opacity: 1;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, var(--brand-dark) 0%, #1a4a48 100%);
-            color: var(--text-light);
-            padding: 72px 0 64px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(198, 95, 36, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(198, 95, 36, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            color: var(--text-light);
-            margin-bottom: 16px;
-        }
-
-        .hero h1 span {
-            color: var(--brand-accent);
-        }
-
-        .hero-subtitle {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 640px;
-            margin-bottom: 28px;
-        }
-
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .hero-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(4px);
-            padding: 10px 18px;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .hero-meta-item .icon {
-            font-size: 1.1rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            border: none;
-            transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
-            text-decoration: none;
-        }
-
-        .btn:active {
-            transform: scale(0.97);
-        }
-
-        .btn-primary {
-            background: var(--brand-primary);
-            color: var(--text-light);
-            box-shadow: 0 4px 16px rgba(198, 95, 36, 0.35);
-        }
-
-        .btn-primary:hover {
-            background: #d4703a;
-            box-shadow: 0 6px 24px rgba(198, 95, 36, 0.45);
-            opacity: 1;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid rgba(255, 255, 255, 0.35);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--brand-accent);
-            color: var(--brand-accent);
-            opacity: 1;
-        }
-
-        /* ===== SECTION ===== */
-        .section {
-            padding: 64px 0;
-        }
-
-        .section:nth-child(even) {
-            background: #fff;
-        }
-
-        .section-header {
-            margin-bottom: 40px;
-        }
-
-        .section-header p {
-            color: #555;
-            max-width: 680px;
-            margin-top: 8px;
-        }
-
-        /* ===== CARDS ===== */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: var(--radius-md);
-            padding: 28px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(15, 51, 50, 0.06);
-            transition: box-shadow 0.25s, transform 0.25s;
-        }
-
-        .card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .card h3 {
-            margin-bottom: 8px;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 0;
-        }
-
-        /* ===== SCHEDULE / LAYOUTS ===== */
-        .layout-sequence {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .layout-chip {
-            background: var(--brand-dark);
-            color: var(--text-light);
-            padding: 10px 20px;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .layout-chip .num {
-            background: var(--brand-primary);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .layout-arrow {
-            display: flex;
-            align-items: center;
-            color: var(--brand-primary);
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        /* ===== TABLE ===== */
-        .table-wrap {
-            overflow-x: auto;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            font-size: 0.95rem;
-        }
-
-        thead {
-            background: var(--brand-dark);
-            color: var(--text-light);
-        }
-
-        th, td {
-            padding: 14px 18px;
-            text-align: left;
-        }
-
-        th {
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        tbody tr {
-            border-bottom: 1px solid rgba(15, 51, 50, 0.07);
-        }
-
-        tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        tbody tr:nth-child(even) {
-            background: #faf8f6;
-        }
-
-        tbody tr:hover {
-            background: #f0ebe6;
-        }
-
-        .highlight-row {
-            background: rgba(198, 95, 36, 0.08) !important;
-            font-weight: 600;
-        }
-
-        /* ===== BADGES ===== */
-        .badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-        }
-
-        .badge-primary {
-            background: rgba(198, 95, 36, 0.15);
-            color: var(--brand-primary);
-        }
-
-        .badge-dark {
-            background: rgba(15, 51, 50, 0.1);
-            color: var(--brand-dark);
-        }
-
-        /* ===== PRICING ===== */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-        }
-
-        .pricing-card {
-            background: #fff;
-            border-radius: var(--radius-md);
-            padding: 32px 28px;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid transparent;
-            transition: border-color 0.25s, box-shadow 0.25s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--brand-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .pricing-card.featured::before {
-            content: 'MÁS POPULAR';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--brand-primary);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            padding: 4px 16px;
-            border-radius: 999px;
-            white-space: nowrap;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .pricing-card .price {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--brand-primary);
-            margin: 8px 0 4px;
-            font-family: var(--font-heading);
-        }
-
-        .pricing-card .price small {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #777;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin: 16px 0 24px;
-            flex: 1;
-        }
-
-        .pricing-card ul li {
-            padding: 6px 0;
-            font-size: 0.92rem;
-            color: #444;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .pricing-card ul li::before {
-            content: '✓';
-            color: var(--brand-primary);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .pricing-card .btn {
-            width: 100%;
-            text-align: center;
-        }
-
-        /* ===== INFO BOX ===== */
-        .info-box {
-            background: rgba(198, 95, 36, 0.07);
-            border-left: 4px solid var(--brand-primary);
-            padding: 18px 22px;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin: 20px 0;
-            font-size: 0.95rem;
-        }
-
-        .info-box strong {
-            color: var(--brand-primary);
-        }
-
-        .warning-box {
-            background: rgba(15, 51, 50, 0.06);
-            border-left: 4px solid var(--brand-dark);
-            padding: 18px 22px;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin: 20px 0;
-            font-size: 0.95rem;
-        }
-
-        /* ===== ACCORDION ===== */
-        .accordion {
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            background: #fff;
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid rgba(15, 51, 50, 0.07);
-        }
-
-        .accordion-item:last-child {
-            border-bottom: none;
-        }
-
-        .accordion-header {
-            width: 100%;
-            background: transparent;
-            border: none;
-            padding: 20px 24px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--brand-dark);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            text-align: left;
-            font-family: inherit;
-            transition: background 0.2s;
-        }
-
-        .accordion-header:hover {
-            background: #faf8f6;
-        }
-
-        .accordion-header .arrow {
-            font-size: 0.8rem;
-            transition: transform 0.3s;
-            color: var(--brand-primary);
-            flex-shrink: 0;
-        }
-
-        .accordion-item.open .accordion-header .arrow {
-            transform: rotate(180deg);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.35s ease;
-            padding: 0 24px;
-        }
-
-        .accordion-item.open .accordion-body {
-            max-height: 600px;
-            padding: 0 24px 20px;
-        }
-
-        .accordion-body p,
-        .accordion-body ul {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        .accordion-body ul {
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-
-        .accordion-body ul li {
-            margin-bottom: 6px;
-        }
-
-        /* ===== FOOTER ===== */
-        .site-footer {
-            background: var(--brand-dark);
-            color: rgba(255, 255, 255, 0.75);
-            padding: 48px 0 32px;
-            margin-top: 0;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .footer-brand img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid var(--brand-primary);
-        }
-
-        .footer-brand-text {
-            font-size: 0.9rem;
-        }
-
-        .footer-brand-text strong {
-            color: #fff;
-            display: block;
-            font-size: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--brand-accent);
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.45);
-        }
-
-        /* ===== BACK TO TOP ===== */
-        .back-to-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--brand-primary);
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-md);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
-            z-index: 99;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            background: #d4703a;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .header-nav {
-                width: 100%;
-                overflow-x: auto;
-                padding-bottom: 4px;
-            }
-
-            .hero {
-                padding: 56px 0 48px;
-            }
-
-            .section {
-                padding: 48px 0;
-            }
-
-            .hero-meta-item {
-                font-size: 0.82rem;
-                padding: 8px 14px;
-            }
-
-            .pricing-card.featured::before {
-                font-size: 0.65rem;
-                padding: 3px 12px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .card {
-                padding: 22px;
-            }
-
-            .pricing-card {
-                padding: 24px 20px;
-            }
-
-            .accordion-header {
-                padding: 16px 18px;
-                font-size: 0.92rem;
-            }
-
-            .accordion-body {
-                padding: 0 18px;
-            }
-
-            .accordion-item.open .accordion-body {
-                padding: 0 18px 16px;
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- ===== HEADER ===== -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="header-logo">
-                <img src="https://i.imgur.com/PLACEHOLDER_LOGO.png" alt="Logo Liga de Disc Golf Campo Montemorelos">
+                <img src="images/disc-golf-basket.svg" alt="Logo Liga de Disc Golf Campo Montemorelos">
                 <div class="header-logo-text">
                     <span class="league-name">Liga Montemorelos</span>
                     <span class="season-badge">4ta Temporada · 2026</span>
                 </div>
             </div>
-            <nav class="header-nav" aria-label="Navegación principal">
+            <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="primary-navigation"
+                aria-label="Abrir menú">
+                <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+            </button>
+            <nav class="header-nav" id="primary-navigation" aria-label="Navegación principal">
                 <a href="#formato">Formato</a>
                 <a href="#layouts">Layouts</a>
                 <a href="#categorias">Categorías</a>
@@ -855,33 +46,44 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero">
-        <div class="container hero-content">
-            <h1>Liga de Disc Golf<br><span>Campo Montemorelos</span></h1>
-            <p class="hero-subtitle">
-                Competencia semanal sancionada por la PDGA con clasificación general unificada por hándicap.
-                Del 4 de octubre al 20 de diciembre · 10 jornadas · Formato flex start.
-            </p>
-            <div class="hero-meta">
-                <div class="hero-meta-item">
-                    <span class="icon">📅</span>
-                    <span>4 Oct – 20 Dic 2026</span>
-                </div>
-                <div class="hero-meta-item">
-                    <span class="icon">📍</span>
-                    <span>Ojo de Agua, Montemorelos, N.L.</span>
-                </div>
-                <div class="hero-meta-item">
-                    <span class="icon">🏆</span>
-                    <span>10 jornadas · 5 layouts</span>
-                </div>
-                <div class="hero-meta-item">
-                    <span class="icon">📱</span>
-                    <span>UDisc Leagues + PDGA</span>
-                </div>
+        <div class="container hero-layout">
+            <div class="hero-media">
+                <img src="images/liga-DGMM.svg" alt="Logo Liga de Disc Golf Campo Montemorelos" width="640" height="640"
+                    fetchpriority="high">
             </div>
-            <div class="hero-actions">
-                <a href="#registro" class="btn btn-primary">Registrarme en UDisc →</a>
-                <a href="#costos" class="btn btn-outline">Ver costos y paquetes</a>
+            <div class="hero-content">
+                <h1>Liga de Disc Golf<br><span>Campo Montemorelos</span></h1>
+                <p class="hero-subtitle">
+                    Competencia semanal sancionada por la PDGA con clasificación general unificada por hándicap.
+                    Del 4 de octubre al 20 de diciembre · 10 jornadas · Formato flex start.
+                </p>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="icon"><span class="material-symbols-rounded"
+                                aria-hidden="true">calendar_month</span></span>
+                        <span>4 Oct – 20 Dic 2026</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="icon"><span class="material-symbols-rounded"
+                                aria-hidden="true">location_on</span></span>
+                        <span>Ojo de Agua, Montemorelos, N.L.</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="icon"><span class="material-symbols-rounded"
+                                aria-hidden="true">trophy</span></span>
+                        <span>10 jornadas · 5 layouts</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="icon"><span class="material-symbols-rounded"
+                                aria-hidden="true">smartphone</span></span>
+                        <span>UDisc Leagues + PDGA</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#registro" class="btn btn-primary">Registrarme en UDisc <span
+                            class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
+                    <a href="#costos" class="btn btn-outline">Ver costos y paquetes</a>
+                </div>
             </div>
         </div>
     </section>
@@ -896,21 +98,25 @@
 
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">📆</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">event</span>
                     <h3>Calendario</h3>
                     <p>Del <strong>4 de octubre al 20 de diciembre</strong> (10 jornadas en total).<br>
-                    <strong>11 de octubre:</strong> No hay jornada (Torneo Oktober Disc).<br>
-                    <strong>15 de noviembre:</strong> No hay jornada (Torneo del Pavo).</p>
+                        <strong>11 de octubre:</strong> No hay jornada (Torneo Oktober Disc).<br>
+                        <strong>15 de noviembre:</strong> No hay jornada (Torneo del Pavo).
+                    </p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">⏰</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">schedule</span>
                     <h3>Flex Start</h3>
-                    <p>Cada jornada se lleva a cabo <strong>únicamente los domingos</strong>, en formato flex start. Los jugadores eligen su horario de salida dentro del día.</p>
+                    <p>Cada jornada se lleva a cabo <strong>únicamente los domingos</strong>, en formato flex start. Los
+                        jugadores eligen su horario de salida dentro del día.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🏅</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">workspace_premium</span>
                     <h3>Sanción PDGA</h3>
-                    <p>Las rondas serán de <strong>18 hoyos</strong> y estarán sancionadas por la PDGA. Cada jugador deberá inscribirse en una categoría oficial y las rondas generarán <strong>rating oficial</strong>.</p>
+                    <p>Las rondas serán de <strong>18 hoyos</strong> y estarán sancionadas por la PDGA. Cada jugador
+                        deberá inscribirse en una categoría oficial y las rondas generarán <strong>rating
+                            oficial</strong>.</p>
                 </div>
             </div>
         </div>
@@ -921,25 +127,32 @@
         <div class="container">
             <div class="section-header">
                 <h2>Layouts de juego</h2>
-                <p>Durante la temporada se utilizarán cinco layouts diferentes del campo Ojo de Agua, que se jugarán de manera rotativa en el siguiente orden cíclico.</p>
+                <p>Durante la temporada se utilizarán cinco layouts diferentes del campo Ojo de Agua, que se jugarán de
+                    manera rotativa en el siguiente orden cíclico.</p>
             </div>
 
             <div class="layout-sequence">
                 <div class="layout-chip"><span class="num">1</span> Armadillo Rojo</div>
-                <span class="layout-arrow">→</span>
+                <span class="layout-arrow"><span class="material-symbols-rounded"
+                        aria-hidden="true">arrow_forward</span></span>
                 <div class="layout-chip"><span class="num">2</span> Jabalí Blanco</div>
-                <span class="layout-arrow">→</span>
+                <span class="layout-arrow"><span class="material-symbols-rounded"
+                        aria-hidden="true">arrow_forward</span></span>
                 <div class="layout-chip"><span class="num">3</span> Liga MM</div>
-                <span class="layout-arrow">→</span>
+                <span class="layout-arrow"><span class="material-symbols-rounded"
+                        aria-hidden="true">arrow_forward</span></span>
                 <div class="layout-chip"><span class="num">4</span> Gavilán Azul</div>
-                <span class="layout-arrow">→</span>
+                <span class="layout-arrow"><span class="material-symbols-rounded"
+                        aria-hidden="true">arrow_forward</span></span>
                 <div class="layout-chip"><span class="num">5</span> Reverse</div>
-                <span class="layout-arrow">↻</span>
+                <span class="layout-arrow"><span class="material-symbols-rounded"
+                        aria-hidden="true">autorenew</span></span>
             </div>
 
             <div class="info-box" style="margin-top: 24px;">
                 <strong>Ejemplo:</strong> Si la temporada cuenta con 10 jornadas, cada layout se jugará dos veces.
-                El layout correspondiente a cada jornada será comunicado con anticipación para que los jugadores conozcan el recorrido.
+                El layout correspondiente a cada jornada será comunicado con anticipación para que los jugadores
+                conozcan el recorrido.
             </div>
         </div>
     </section>
@@ -949,7 +162,8 @@
         <div class="container">
             <div class="section-header">
                 <h2>2. Categorías</h2>
-                <p>Para esta temporada se jugarán categorías PDGA oficiales. De forma paralela, todos los jugadores competirán en una clasificación general unificada con hándicap.</p>
+                <p>Para esta temporada se jugarán categorías PDGA oficiales. De forma paralela, todos los jugadores
+                    competirán en una clasificación general unificada con hándicap.</p>
             </div>
 
             <div class="card-grid">
@@ -971,7 +185,9 @@
             </div>
 
             <div class="info-box" style="margin-top: 28px;">
-                <strong>Clasificación general unificada:</strong> Todos los jugadores, sin importar su categoría PDGA, competirán paralelamente en una tabla general con hándicap que permite que jugadores de distintos niveles compitan en igualdad de condiciones.
+                <strong>Clasificación general unificada:</strong> Todos los jugadores, sin importar su categoría PDGA,
+                competirán paralelamente en una tabla general con hándicap que permite que jugadores de distintos
+                niveles compitan en igualdad de condiciones.
             </div>
         </div>
     </section>
@@ -998,12 +214,12 @@
                         <tr>
                             <td>Premio al ganador de la jornada</td>
                             <td><strong>35%</strong></td>
-                            <td>Premio directo para el mejor puntaje neto de la jornada.</td>
+                            <td>Premio directo para el mejor puntaje con handicap de la jornada.</td>
                         </tr>
                         <tr>
                             <td>Premios</td>
                             <td><strong>25%</strong></td>
-                            <td>Premios adicionales y reconocimientos.</td>
+                            <td>Premios físicos, como minis, discos, toallas, etc.</td>
                         </tr>
                         <tr>
                             <td>Trofeos</td>
@@ -1035,7 +251,6 @@
                         <li>Registro en UDisc Leagues</li>
                         <li>Rating PDGA por jornada</li>
                     </ul>
-                    <a href="#registro" class="btn btn-primary">Elegir paquete</a>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Temporada Básica + Ace Pool</h3>
@@ -1047,7 +262,6 @@
                         <li>Registro en UDisc Leagues</li>
                         <li>Rating PDGA por jornada</li>
                     </ul>
-                    <a href="#registro" class="btn btn-primary">Elegir paquete</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Temporada Completa</h3>
@@ -1058,7 +272,6 @@
                         <li>Registro en UDisc Leagues</li>
                         <li>Rating PDGA por jornada</li>
                     </ul>
-                    <a href="#registro" class="btn btn-primary">Elegir paquete</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Temporada Completa + Ace Pool</h3>
@@ -1070,12 +283,13 @@
                         <li>Registro en UDisc Leagues</li>
                         <li>Rating PDGA por jornada</li>
                     </ul>
-                    <a href="#registro" class="btn btn-primary">Elegir paquete</a>
                 </div>
             </div>
 
             <div class="warning-box" style="margin-top: 28px;">
-                <strong>Importante:</strong> El costo de una jornada individual es de $80 MXN. La participación en el Ace Pool tiene un costo adicional de $20 MXN por jornada. Los paquetes representan un precio preferencial respecto al pago individual.
+                <strong>Importante:</strong> El costo de una jornada individual es de $80 MXN. La participación en el
+                Ace Pool tiene un costo adicional de $20 MXN por jornada. Los paquetes representan un precio
+                preferencial respecto al pago individual.
             </div>
         </div>
     </section>
@@ -1090,23 +304,27 @@
 
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">🎯</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">target</span>
                     <h3>¿Cómo funciona?</h3>
-                    <p>El acumulado se lo lleva quien logre un <strong>ace (hoyo en uno)</strong>. Si nadie logra un ace, el acumulado se conserva para la siguiente jornada y continúa acumulándose hasta que algún jugador lo consiga.</p>
+                    <p>El acumulado se lo lleva quien logre un <strong>ace (hoyo en uno)</strong>. Si nadie logra un
+                        ace, el acumulado se conserva para la siguiente jornada y continúa acumulándose hasta que algún
+                        jugador lo consiga.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">💳</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">credit_card</span>
                     <h3>Forma de pago</h3>
                     <p><strong>Efectivo:</strong> con Melquis.<br>
-                    <strong>Transferencia bancaria:</strong><br>
-                    Banco: Klar<br>
-                    Titular: Cynthia Trejo<br>
-                    Cuenta: 6616 1000 6333 458 631</p>
+                        <strong>Transferencia bancaria:</strong><br>
+                        Banco: Klar<br>
+                        Titular: Cynthia Trejo<br>
+                        Cuenta: 6616 1000 6333 458 631
+                    </p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">⏳</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">hourglass_empty</span>
                     <h3>Recomendación</h3>
-                    <p>Realizar el pago <strong>antes de iniciar la jornada</strong> para facilitar el registro y evitar confusiones con la participación en el Ace Pool.</p>
+                    <p>Realizar el pago <strong>antes de iniciar la jornada</strong> para facilitar el registro y evitar
+                        confusiones con la participación en el Ace Pool.</p>
                 </div>
             </div>
         </div>
@@ -1117,37 +335,44 @@
         <div class="container">
             <div class="section-header">
                 <h2>4. Sistema de Hándicap</h2>
-                <p>El hándicap se gestionará automáticamente a través del sistema oficial de <strong>UDisc Leagues</strong>.</p>
+                <p>El hándicap se gestionará automáticamente a través del sistema oficial de <strong>UDisc
+                        Leagues</strong>.</p>
             </div>
 
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">📊</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">bar_chart</span>
                     <h3>Registro de resultados</h3>
-                    <p>Todos los tanteos (scores) se registrarán directamente en UDisc, utilizando el card oficial de la liga.</p>
+                    <p>Todos los tanteos (scores) se registrarán directamente en UDisc, utilizando el card oficial de la
+                        liga.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">⚙️</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">settings</span>
                     <h3>¿Cómo funciona?</h3>
-                    <p>UDisc calcula el hándicap de cada jugador con base en sus rondas en la liga. Este cálculo se ajusta dinámicamente conforme participas en más jornadas, reflejando tu nivel real de juego.</p>
+                    <p>UDisc calcula el hándicap de cada jugador con base en sus rondas en la liga. Este cálculo se
+                        ajusta dinámicamente conforme participas en más jornadas, reflejando tu nivel real de juego.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🧮</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">calculate</span>
                     <h3>El sistema toma en cuenta</h3>
                     <ul style="list-style: disc; padding-left: 18px; font-size: 0.92rem; color: #555;">
-                        <li>Tu historial de rondas registradas (preferentemente en el mismo campo o layout).</li>
+                        <li>Tu historial de rondas registradas (únicamene las de la liga).</li>
                         <li>Un promedio ponderado que evoluciona jornada a jornada.</li>
-                        <li>Un ajuste interno que iguala el campo de juego, permitiendo que cualquier jugador compita con oportunidades reales.</li>
+                        <li>Un ajuste interno que iguala el campo de juego, permitiendo que cualquier jugador compita
+                            con oportunidades reales.</li>
                     </ul>
                 </div>
             </div>
 
             <div class="info-box" style="margin-top: 28px;">
-                <strong>Clasificaciones:</strong> La clasificación general unificada con hándicap se llevará únicamente en UDisc. Los resultados por categoría también podrán consultarse directamente en la app.
+                <strong>Clasificaciones:</strong> La clasificación general unificada con hándicap se llevará únicamente
+                en UDisc. Los resultados por categoría también podrán consultarse directamente en la app.
             </div>
 
             <div class="warning-box">
-                <strong>Importante:</strong> Solo se considerarán las rondas jugadas dentro de la liga para el cálculo del hándicap. Únicamente serán válidos los scores registrados en el <strong>card oficial de la liga en UDisc</strong>.
+                <strong>Importante:</strong> Solo se considerarán las rondas jugadas dentro de la liga para el cálculo
+                del hándicap. Únicamente serán válidos los scores registrados en el <strong>card oficial de la liga en
+                    UDisc</strong>.
             </div>
         </div>
     </section>
@@ -1157,29 +382,35 @@
         <div class="container">
             <div class="section-header">
                 <h2>5. Formato PDGA</h2>
-                <p>La liga combina competencia oficial con rating PDGA y competencia equitativa con hándicap en UDisc.</p>
+                <p>La liga combina competencia oficial con rating PDGA y competencia equitativa con hándicap en UDisc.
+                </p>
             </div>
 
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">🏆</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">emoji_events</span>
                     <h3>Competencia por categoría</h3>
-                    <p>Cada jugador competirá en su categoría oficial PDGA, lo que le permitirá obtener <strong>rating oficial</strong> por cada jornada.</p>
+                    <p>Cada jugador competirá en su categoría oficial PDGA, lo que le permitirá obtener <strong>rating
+                            oficial</strong> por cada jornada.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">📈</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">trending_up</span>
                     <h3>Clasificación general</h3>
-                    <p>De forma paralela, todos los jugadores participarán en una clasificación general unificada con hándicap (gestionada en UDisc), que será la base para la premiación de la liga.</p>
+                    <p>De forma paralela, todos los jugadores participarán en una clasificación general unificada con
+                        hándicap (gestionada en UDisc), que será la base para la premiación de la liga.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">📋</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">assignment</span>
                     <h3>Resultados y reportes</h3>
-                    <p>El Director de la Liga subirá los resultados a la PDGA a más tardar al día siguiente de cada jornada. Los resultados oficiales por categoría se consultan en la página de la PDGA. La clasificación general con hándicap se consulta exclusivamente en UDisc.</p>
+                    <p>El Director de la Liga subirá los resultados a la PDGA a más tardar al día siguiente de cada
+                        jornada. Los resultados oficiales por categoría se consultan en la página de la PDGA. La
+                        clasificación general con hándicap se consulta exclusivamente en UDisc.</p>
                 </div>
             </div>
 
             <div class="info-box" style="margin-top: 28px;">
-                <strong>Nota:</strong> Cada jornada tiene dos resultados paralelos: uno oficial por categoría (PDGA) y otro general con hándicap (UDisc).
+                <strong>Nota:</strong> Cada jornada tiene dos resultados paralelos: uno oficial por categoría (PDGA) y
+                otro general con hándicap (UDisc).
             </div>
         </div>
     </section>
@@ -1238,70 +469,95 @@
 
             <div class="accordion">
                 <div class="accordion-item open">
-                    <button class="accordion-header" aria-expanded="true">
+                    <button type="button" class="accordion-header" aria-expanded="true">
                         <span>Grupos y rondas</span>
-                        <span class="arrow">▼</span>
+                        <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
                     </button>
                     <div class="accordion-body">
                         <ul>
-                            <li>Las rondas deberán jugarse normalmente en grupos de <strong>3 a 5 jugadores</strong>.</li>
-                            <li>Si un grupo queda con menos de 3 jugadores, deberá seguirse el procedimiento PDGA aplicable y contactarse al Director de Liga o a un Oficial antes de continuar, salvo autorización expresa conforme al reglamento.</li>
-                            <li>No es obligatorio que los jugadores de un mismo card pertenezcan a la misma categoría.</li>
+                            <li>Las rondas deberán jugarse normalmente en grupos de <strong>3 a 5 jugadores</strong>.
+                            </li>
+                            <li>Si un grupo queda con menos de 3 jugadores, deberá seguirse el procedimiento PDGA
+                                aplicable y contactarse al Director de Liga o a un Oficial antes de continuar, salvo
+                                autorización expresa conforme al reglamento.</li>
+                            <li>No es obligatorio que los jugadores de un mismo card pertenezcan a la misma categoría.
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
+                    <button type="button" class="accordion-header" aria-expanded="false">
                         <span>Registro en UDisc</span>
-                        <span class="arrow">▼</span>
+                        <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
                     </button>
                     <div class="accordion-body">
                         <ul>
-                            <li>La liga se gestionará a través de UDisc, se debe llevar el registro hoyo por hoyo. El card oficial de UDisc será la herramienta principal para ese registro.</li>
-                            <li>Cada card deberá contar con al menos un jugador que tenga <strong>conexión a internet mediante datos móviles</strong> durante toda la ronda, para llevar el registro de los scores en tiempo real directamente en UDisc.</li>
-                            <li>Si ningún jugador del card cuenta con datos móviles para realizar el registro en tiempo real, <strong>los resultados de ese card serán invalidados en su totalidad</strong>.</li>
-                            <li>La persona encargada de llevar la scorecard será responsable de registrar correctamente los resultados, pero todos los jugadores del card deberán revisar y confirmar los scores antes de finalizar y entregar la tarjeta.</li>
-                            <li>Una vez finalizada la ronda, todos los jugadores serán responsables de verificar que los resultados registrados sean correctos y estén de acuerdo con ellos.</li>
+                            <li>La liga se gestionará a través de UDisc, se debe llevar el registro hoyo por hoyo. El
+                                card oficial de UDisc será la herramienta principal para ese registro.</li>
+                            <li>Cada card deberá contar con al menos un jugador que tenga <strong>conexión a internet
+                                    mediante datos móviles</strong> durante toda la ronda, para llevar el registro de
+                                los scores en tiempo real directamente en UDisc.</li>
+                            <li>Si ningún jugador del card cuenta con datos móviles para realizar el registro en tiempo
+                                real, <strong>los resultados de ese card serán invalidados en su totalidad</strong>.
+                            </li>
+                            <li>La persona encargada de llevar la scorecard será responsable de registrar correctamente
+                                los resultados, pero todos los jugadores del card deberán revisar y confirmar los scores
+                                antes de finalizar y entregar la tarjeta.</li>
+                            <li>Una vez finalizada la ronda, todos los jugadores serán responsables de verificar que los
+                                resultados registrados sean correctos y estén de acuerdo con ellos.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
+                    <button type="button" class="accordion-header" aria-expanded="false">
                         <span>Creación y modificación de cards</span>
-                        <span class="arrow">▼</span>
+                        <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
                     </button>
                     <div class="accordion-body">
                         <ul>
-                            <li>Los jugadores podrán crear su propio card en UDisc para registrar su jornada de la liga.</li>
-                            <li>En caso de que la app no permita la creación de cards por parte de los jugadores, deberán notificar al staff con anticipación y el card será creado por el staff de la liga.</li>
-                            <li>Una vez creado el card, <strong>no deberá modificarse</strong>. Los jugadores deberán acordar previamente su grupo, día y horario de juego.</li>
+                            <li>Los jugadores podrán crear su propio card en UDisc para registrar su jornada de la liga.
+                            </li>
+                            <li>En caso de que la app no permita la creación de cards por parte de los jugadores,
+                                deberán notificar al staff con anticipación y el card será creado por el staff de la
+                                liga.</li>
+                            <li>Una vez publicado el card, <strong>no deberá modificarse</strong>. Los jugadores deberán
+                                acordar previamente su grupo, día y horario de juego.</li>
                             <li>El uso correcto del card oficial de la liga es responsabilidad de los jugadores.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
+                    <button type="button" class="accordion-header" aria-expanded="false">
                         <span>Publicación de resultados</span>
-                        <span class="arrow">▼</span>
+                        <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
                     </button>
                     <div class="accordion-body">
                         <ul>
-                            <li>No es necesario publicar los resultados en el grupo de WhatsApp. Los resultados pueden consultarse directamente en UDisc.</li>
+                            <li>No es necesario publicar los resultados en el grupo de WhatsApp. Los resultados pueden
+                                consultarse directamente en UDisc.</li>
                             <li>El grupo servirá únicamente para organización y coordinación.</li>
-                            <li>Solo se considerarán válidos los resultados registrados en <strong>cards oficiales de la liga en UDisc</strong>. Las rondas casuales o registradas fuera del card oficial no serán tomadas en cuenta.</li>
+                            <li>Solo se considerarán válidos los resultados registrados en <strong>cards oficiales de la
+                                    liga en UDisc</strong>. Las rondas casuales o registradas fuera del card oficial no
+                                serán tomadas en cuenta.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
+                    <button type="button" class="accordion-header" aria-expanded="false">
                         <span>Aplicación de reglas y resolución de dudas</span>
-                        <span class="arrow">▼</span>
+                        <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
                     </button>
                     <div class="accordion-body">
                         <ul>
-                            <li>Los jugadores del grupo son responsables de observar y hacer cumplir las reglas PDGA durante la ronda.</li>
-                            <li>Las decisiones del Director de Liga o de un Oficial de Torneo designado prevalecen sobre las decisiones del grupo: penalizaciones por violaciones de reglas, foot faults, tiempos, conducta, reglas de lie, mandos, OB, hazard, etc.</li>
-                            <li>Si existe duda o desacuerdo sobre cómo proceder conforme a las reglas, el jugador podrá usar provisional únicamente en los casos permitidos por la regla 809.02. Antes de lanzar, deberá anunciar claramente que está jugando provisional, explicar la razón y especificar qué secuencia de tiros aplica.</li>
+                            <li>Los jugadores del grupo son responsables de observar y hacer cumplir las reglas PDGA
+                                durante la ronda.</li>
+                            <li>Las decisiones del Director de Liga o de un Oficial de Torneo designado prevalecen sobre
+                                las decisiones del grupo: penalizaciones por violaciones de reglas, foot faults,
+                                tiempos, conducta, reglas de lie, mandos, OB, hazard, etc.</li>
+                            <li>Si existe duda o desacuerdo sobre cómo proceder conforme a las reglas, el jugador podrá
+                                usar provisional únicamente en los casos permitidos por la regla 809.02. Antes de
+                                lanzar, deberá anunciar claramente que está jugando provisional, explicar la razón y
+                                especificar qué secuencia de tiros aplica.</li>
                         </ul>
                     </div>
                 </div>
@@ -1314,19 +570,27 @@
         <div class="container">
             <div class="section-header">
                 <h2>8. Sistema de Puntuación y Premiación Final</h2>
-                <p>Esta temporada utilizaremos el sistema de puntuación automático de <strong>UDisc Leagues</strong>, que asigna puntos a los jugadores en cada jornada según su desempeño con hándicap aplicado.</p>
+                <p>Esta temporada nuevamente utilizaremos el sistema de puntuación automático de <strong>UDisc
+                        Leagues</strong>,
+                    que asigna puntos a los jugadores en cada jornada según su desempeño con hándicap aplicado.</p>
             </div>
 
             <div class="card-grid" style="margin-bottom: 32px;">
                 <div class="card">
-                    <span class="card-icon">📊</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">leaderboard</span>
                     <h3>Asignación de puntos</h3>
-                    <p>El sistema premia a los mejores jugadores de cada jornada, tomando en cuenta su rendimiento con hándicap. Solo un porcentaje de los mejores jugadores obtendrán más de 1 punto. El resto recibirá 1 punto por participación.</p>
+                    <p>El sistema premia a los mejores jugadores de cada jornada, tomando en cuenta su rendimiento con
+                        hándicap. Solo un porcentaje de los mejores jugadores obtendrán más de 1 punto. El resto
+                        recibirá 1 punto por participación.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🔢</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">123</span>
                     <h3>Configuración de la liga</h3>
-                    <p>Se suponen <strong>20 jugadores por jornada</strong> con una profundidad de puntuación del <strong>50%</strong>. Esto significa que los 10 mejores jugadores de cada semana obtendrán más de 1 punto, y del lugar 11 hacia abajo obtendrán solo 1 punto.</p>
+                    <p>Supongamos que tendremos <strong>20 jugadores por jornada</strong> con una profundidad de
+                        puntuación del
+                        <strong>50%</strong>. Esto significa que los 10 mejores jugadores de cada semana obtendrán más
+                        de 1 punto, y del lugar 11 hacia abajo obtendrán solo 1 punto.
+                    </p>
                 </div>
             </div>
 
@@ -1389,62 +653,75 @@
             </div>
 
             <div class="info-box" style="margin-top: 20px;">
-                <strong>Nota:</strong> UDisc ajusta los puntos de forma automática según el total de jugadores y la configuración. El ejemplo anterior es solo ilustrativo.
+                <strong>Nota:</strong> UDisc ajusta los puntos de forma automática según el total de jugadores y la
+                configuración. El ejemplo anterior es solo ilustrativo.
             </div>
 
             <!-- Desempates generales -->
             <h3 style="margin-top: 40px; margin-bottom: 12px;">Criterios de Desempate</h3>
-            <p style="margin-bottom: 20px;">En caso de empate en la Clasificación General Unificada con hándicap, los criterios de desempate se aplicarán únicamente para definir las posiciones premiadas (Top 3).</p>
+            <p style="margin-bottom: 20px;">En caso de empate en la Clasificación General Unificada con hándicap, los
+                criterios de desempate se aplicarán únicamente para definir las posiciones premiadas (Top 3).</p>
 
             <div class="card-grid" style="margin-bottom: 32px;">
                 <div class="card">
-                    <span class="card-icon">🥇</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">emoji_events</span>
                     <h3>Desempate en tabla general (Top 3)</h3>
-                    <p>Se definirá con base en el <strong>rating de las rondas</strong> registradas durante la liga, priorizando al jugador con mejor desempeño general.</p>
+                    <p>Se definirá con base en el <strong>rating de las rondas</strong> registradas durante la liga,
+                        priorizando al jugador con mejor desempeño general.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🏅</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">workspace_premium</span>
                     <h3>Empate en el primer lugar de categoría PDGA</h3>
-                    <p>Se determinará mediante las estadísticas acumuladas de los jugadores durante la temporada, aplicando los siguientes criterios:</p>
+                    <p>Se determinará mediante las estadísticas acumuladas de los jugadores durante la temporada,
+                        aplicando los siguientes criterios:</p>
                     <ol style="padding-left: 18px; font-size: 0.92rem; color: #555; margin-top: 8px;">
                         <li>Mayor porcentaje de Birdie o mejor (Birdie -).</li>
                         <li>Mayor porcentaje de Par.</li>
                         <li>Menor porcentaje de Bogey o peor (Bogey +).</li>
                         <li>Menor porcentaje de Doble Bogey o peor (Dbl Bogey +).</li>
                     </ol>
-                    <p style="margin-top: 8px; font-size: 0.88rem; color: #777;">Este sistema de la PDGA asigna automáticamente al ganador usando estos criterios.</p>
+                    <p style="margin-top: 8px; font-size: 0.88rem; color: #777;">Este sistema de la PDGA asigna
+                        automáticamente al ganador usando estos criterios.</p>
                 </div>
             </div>
 
             <!-- Rondas que cuentan -->
             <h3 style="margin-bottom: 12px;">¿Qué rondas cuentan?</h3>
             <div class="info-box">
-                <p style="margin-bottom: 0;">Para el grupo unificado se tomarán en cuenta las <strong>mejores 6 rondas</strong> de cada jugador durante la temporada. Esto permite que puedas faltar alguna semana sin quedar fuera de la tabla general, o si tienes una mala ronda tampoco te afecte.</p>
+                <p style="margin-bottom: 0;">Para el grupo unificado se tomarán en cuenta las <strong>mejores 6
+                        rondas</strong> de cada jugador durante la temporada. Esto permite que puedas faltar alguna
+                    semana sin quedar fuera de la tabla general, o si tienes una mala ronda tampoco te afecte.</p>
             </div>
 
             <!-- Premiación -->
             <h3 style="margin-top: 32px; margin-bottom: 12px;">Premiación</h3>
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">🏆</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">trophy</span>
                     <h3>Premios generales</h3>
-                    <p>Al final de la temporada se entregarán premios físicos a los <strong>3 primeros lugares</strong> de la Clasificación General Unificada con hándicap.</p>
+                    <p>Al final de la temporada se entregarán premios físicos a los <strong>3 primeros lugares</strong>
+                        de la Clasificación General Unificada con hándicap.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🎖️</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">workspace_premium</span>
                     <h3>Categorías PDGA</h3>
-                    <p>Los ganadores de cada categoría (FA1, MA1, MA2, etc.) recibirán un <strong>trofeo de 1er. Lugar</strong> de la categoría.</p>
-                    <p style="font-size: 0.88rem; color: #777; margin-top: 8px;">Nota: Las categorías con menos de 4 jugadores no recibirán trofeo; en su lugar recibirán una placa.</p>
+                    <p>Los ganadores de cada categoría (FA1, MA1, MA2, etc.) recibirán un <strong>trofeo de 1er.
+                            Lugar</strong> de la categoría.</p>
+                    <p style="font-size: 0.88rem; color: #777; margin-top: 8px;">Nota: Las categorías con menos de 4
+                        jugadores no recibirán trofeo; en su lugar recibirán una placa.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">ℹ️</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">info</span>
                     <h3>Importante</h3>
-                    <p>Aunque los jugadores compiten en categorías oficiales PDGA y obtienen resultados y rating por categoría, <strong>la premiación de la liga se basará únicamente en la clasificación general unificada con hándicap</strong>.</p>
+                    <p>Aunque los jugadores compiten en categorías oficiales PDGA y obtienen resultados y rating por
+                        categoría, <strong>la premiación de la liga se basará únicamente en la clasificación general
+                            unificada con hándicap</strong>.</p>
                 </div>
             </div>
 
             <div class="info-box" style="margin-top: 28px;">
-                <strong>Resumen:</strong> La PDGA define el rendimiento oficial por categoría (rating y resultados). El grupo unificado define la competencia principal y premiación a través del hándicap.
+                <strong>Resumen:</strong> La PDGA define el rendimiento oficial por categoría (rating y resultados). El
+                grupo unificado define la competencia principal y premiación a través del hándicap.
             </div>
         </div>
     </section>
@@ -1454,33 +731,44 @@
         <div class="container">
             <div class="section-header">
                 <h2>9. Registro de Participación y Resultados</h2>
-                <p>El registro oficial de participación y resultados se llevará a cabo directamente en <strong>UDisc</strong>, a través de la función de UDisc Leagues.</p>
+                <p>El registro oficial de participación y resultados se llevará a cabo directamente en
+                    <strong>UDisc</strong>, a través de la función de UDisc Leagues.
+                </p>
             </div>
 
             <div class="card-grid">
                 <div class="card">
-                    <span class="card-icon">📱</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">app_registration</span>
                     <h3>Registro en UDisc</h3>
-                    <p>Cada jugador debe asegurarse de registrarse en la liga dentro de la app de UDisc <strong>antes de comenzar su ronda</strong>. Los organizadores pueden registrar nuevos jugadores, pero se requiere un usuario de UDisc.</p>
+                    <p>Cada jugador debe asegurarse de registrarse en la liga dentro de la app de UDisc <strong>antes de
+                            comenzar su ronda</strong>. Los organizadores pueden registrar nuevos jugadores, pero se
+                        requiere un usuario de UDisc.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">📊</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">monitoring</span>
                     <h3>Resultados automáticos</h3>
-                    <p>Los resultados se publican automáticamente en la tabla de clasificación de UDisc, por lo que ya no será necesario compartirlos en el grupo de WhatsApp.</p>
+                    <p>Los resultados se publican automáticamente en la tabla de clasificación de UDisc, por lo que ya
+                        no será necesario compartirlos en el grupo de WhatsApp.</p>
                 </div>
                 <div class="card">
-                    <span class="card-icon">🔗</span>
+                    <span class="material-symbols-rounded card-icon" aria-hidden="true">link</span>
                     <h3>Resultados oficiales</h3>
-                    <p>La clasificación general unificada con hándicap se consultará exclusivamente en <strong>UDisc</strong>. Los resultados por categoría oficial (PDGA) estarán disponibles en la página oficial de la <strong>PDGA</strong>, una vez que el TD haya subido los reportes de cada jornada.</p>
+                    <p>La clasificación general unificada con hándicap se consultará exclusivamente en
+                        <strong>UDisc</strong>. Los resultados por categoría oficial (PDGA) estarán disponibles en la
+                        página oficial de la <strong>PDGA</strong>, una vez que el TD haya subido los reportes de cada
+                        jornada.
+                    </p>
                 </div>
             </div>
 
             <div class="warning-box" style="margin-top: 28px;">
-                <strong>El grupo de WhatsApp</strong> seguirá activo para organización, dudas y ponerse de acuerdo para armar cards, pero todo lo oficial se manejará vía UDisc y PDGA.
+                <strong>El grupo de WhatsApp</strong> seguirá activo para organización, dudas y ponerse de acuerdo para
+                armar cards, pero todo lo oficial se manejará vía UDisc y PDGA.
             </div>
 
             <div style="text-align: center; margin-top: 40px;">
-                <a href="#" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.05rem;">Registrarme en UDisc Leagues →</a>
+                <a href="#" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.05rem;">Registrarme en UDisc
+                    Leagues <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
             </div>
         </div>
     </section>
@@ -1490,7 +778,7 @@
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">
-                    <img src="https://i.imgur.com/PLACEHOLDER_LOGO.png" alt="Logo Liga de Disc Golf Campo Montemorelos">
+                    <img src="images/disc-golf-basket.svg" alt="Logo Liga de Disc Golf Campo Montemorelos">
                     <div class="footer-brand-text">
                         <strong>Liga de Disc Golf</strong>
                         Campo Montemorelos · 4ta Temporada
@@ -1516,95 +804,11 @@
     </footer>
 
     <!-- ===== BACK TO TOP ===== -->
-    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba" type="button"><span
+            class="material-symbols-rounded" aria-hidden="true">arrow_upward</span></button>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script>
-        (function() {
-            'use strict';
-
-            // --- Accordion ---
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(function(header) {
-                header.addEventListener('click', function() {
-                    const item = this.parentElement;
-                    const isOpen = item.classList.contains('open');
-
-                    // Close all
-                    document.querySelectorAll('.accordion-item').forEach(function(el) {
-                        el.classList.remove('open');
-                        el.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
-                    });
-
-                    // Open current if it wasn't open
-                    if (!isOpen) {
-                        item.classList.add('open');
-                        this.setAttribute('aria-expanded', 'true');
-                    }
-                });
-            });
-
-            // --- Back to top ---
-            const backToTop = document.getElementById('backToTop');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 500) {
-                    backToTop.classList.add('visible');
-                } else {
-                    backToTop.classList.remove('visible');
-                }
-            });
-
-            backToTop.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // --- Smooth scroll for nav links (fallback for browsers without CSS smooth) ---
-            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        const headerOffset = 80;
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // --- Highlight active nav link on scroll (optional) ---
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.header-nav a');
-
-            function highlightNav() {
-                let current = '';
-                sections.forEach(function(section) {
-                    const sectionTop = section.offsetTop - 120;
-                    if (window.scrollY >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(function(link) {
-                    link.style.background = '';
-                    link.style.color = '';
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.style.background = 'var(--brand-primary)';
-                        link.style.color = '#fff';
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', highlightNav);
-            highlightNav();
-
-        })();
-    </script>
+    <script src="script.js" defer></script>
 
 </body>
+
 </html>
