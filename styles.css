@@ -423,6 +423,18 @@ body>section.hero>div {
     gap: 24px;
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+    #directiva .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    #directiva .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .card {
     background: #fff;
     border-radius: var(--radius-md);
